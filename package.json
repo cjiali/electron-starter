@@ -31,15 +31,22 @@
     "electron:dev": "cross-env NODE_ENV=development electron . --no-sandbox",
     "electron:prod": "cross-env NODE_ENV=production electron . --no-sandbox",
     "test": "react-app-rewired test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "format": "prettier --write . --ignore-unknown"
   },
   "husky": {
     "hooks": {
+      "pre-commit": "lint-staged",
       "commit-msg": "node scripts/verify-commit-msg.js ${HUSKY_GIT_PARAMS}"
     }
   },
   "lint-staged": {
-
+    "*.ts?(x)": [
+      "prettier --write --ignore-unknown",
+      "eslint --fix"
+    ]
   },
   "eslintConfig": {
     "extends": [
@@ -60,11 +67,15 @@
     ]
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.11.1",
+    "@typescript-eslint/parser": "^4.11.1",
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.3",
     "customize-cra": "^1.0.0",
     "del": "^6.0.0",
     "electron": "^11.1.1",
+    "eslint": "^7.17.0",
+    "eslint-config-prettier": "^7.1.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-sourcemaps": "^3.0.0",
@@ -73,6 +84,7 @@
     "husky": "^4.3.6",
     "lint-staged": "^10.5.3",
     "nodemon": "^2.0.6",
+    "prettier": "^2.2.1",
     "react-app-rewired": "^2.1.8",
     "wait-on": "^5.2.1"
   }
