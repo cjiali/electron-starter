@@ -30,11 +30,21 @@
     "build:main": "cross-env NODE_ENV=production yarn gulp build",
     "electron:dev": "cross-env NODE_ENV=development electron . --no-sandbox",
     "electron:prod": "cross-env NODE_ENV=production electron . --no-sandbox",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
     "format": "prettier --write . --ignore-unknown"
+  },
+  "build": {
+    "extends": null,
+    "files": [
+      "build/**/*",
+      "node_modules/",
+      "package.json"
+    ]
   },
   "husky": {
     "hooks": {
@@ -74,6 +84,7 @@
     "customize-cra": "^1.0.0",
     "del": "^6.0.0",
     "electron": "^11.1.1",
+    "electron-builder": "^22.9.1",
     "eslint": "^7.17.0",
     "eslint-config-prettier": "^7.1.0",
     "gulp": "^4.0.2",
