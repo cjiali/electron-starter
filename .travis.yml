@@ -1,0 +1,16 @@
+language: node_js
+node_js:
+  - 14.15.1
+cache: # Cache Node.js dependencies to improve the efficiency of the second build
+directories:
+  - node_modules
+install: 
+  # The default installation instruction of Travis Ci is `yarn --frozen-lockfile`
+  # This command will lock the version number of the current dependency package. 
+  # When the dependency package is updated, yarn will report a warning 
+  #   to prevent developers from using the old version of the dependency.
+  - yarn 
+test:
+  - yarn test
+after_success: 
+  - yarn codecov # Generate codecov icon on Github homepage
