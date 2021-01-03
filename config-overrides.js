@@ -1,5 +1,9 @@
 const path = require("path");
-const { override, addWebpackAlias } = require("customize-cra");
+const {
+  override,
+  addWebpackAlias,
+  setWebpackTarget,
+} = require("customize-cra");
 
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
@@ -191,7 +195,8 @@ module.exports = {
             return acc;
           }, {})
         : {}
-    ) // Configure path alias
+    ), // Configure path alias
+    setWebpackTarget("electron-renderer")
   ),
   // Modify Webpack Dev Server configurations
   devServer: (getConfig) => {
